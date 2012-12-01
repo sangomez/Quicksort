@@ -1,13 +1,50 @@
-# Compiled Object files
-*.slo
-*.lo
-*.o
+////////////////////////////////
+// 
+// sorting header sort.h
+// created by Andre Gomez
+// 
+////////////////////////////////
 
-# Compiled Dynamic libraries
-*.so
-*.dylib
+#ifndef SORT_H
+#define SORT_H
 
-# Compiled Static libraries
-*.lai
-*.la
-*.a
+#include <iostream>
+#include <string>
+using namespace std;
+
+////////////////////////////////
+// sorting functions
+////////////////////////////////
+
+// quicksort function that takses in an array, left, and right and sorts it
+// between left and right
+void quickSort(int unSorted[], int left, 
+  				 int right)
+{
+	int pivot, temp;
+	int i = left, j = right;
+	
+	pivot = unSorted[(left + right) / 2];
+	
+	while (i <= j) {//loop
+            while (unSorted[i] < pivot)
+                  i++;
+            while (unSorted[j] > pivot)
+                  j--;
+            if (i <= j) {
+                  temp = unSorted[i];
+                  unSorted[i] = unSorted[j];
+                  unSorted[j] = temp;
+                  i++;
+                  j--;
+            }
+      };
+	//calls itself for recursion
+      if (left < j)
+            quickSort(unSorted, left, j);
+      if (i < right)
+            quickSort(unSorted, i, right);
+
+}
+
+#endif
